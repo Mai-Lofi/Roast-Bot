@@ -1,0 +1,6 @@
+## Enter your own Twitter API 2.0 keys here! 
+consumer_key = "XXXXXXXXXXXXXXXXXXXXXXXXXX"
+consumer_secret = "XXXXXXXXXXXXXXXXXXXXXXXXXX"
+access_token = "XXXXXXXXXXXXXXXXXXXXXXXXXX"
+access_token_secret = "XXXXXXXXXXXXXXXXXXXXXXXXXX"
+bearer_token="XXXXXXXXXXXXXXXXXXXXXXXXXX"
