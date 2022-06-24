@@ -7,7 +7,7 @@ import os.path
 import time
 
 ## Twitter Roast Bot ##
-#*This is the public branch version without keys and personal information*
+# *This is the public branch version without keys and personal information*
 
 # Get API keys from keys.py
 client = tweepy.Client(bearer_token=bearer_token,
@@ -20,6 +20,8 @@ client = tweepy.Client(bearer_token=bearer_token,
 client2 = tweepy.Client(bearer_token=bearer_token)
 
 # Funtions
+
+
 def tweets_to_csv(user):
     # user -> str
     # Grabs 100 most recent tweets from a user, saves to csv, outputs file name
@@ -123,7 +125,7 @@ def roast_by_hobby(hb, user):
     if hb == "reddit":
         return ("Do I actually need to roast @" + user.username + " man "
                 + "deadass gets yelled at by his mom everyday to move out"
-                + " of his house, shower, shave his neckbeard, and to not" + 
+                + " of his house, shower, shave his neckbeard, and to not" +
                 " wear the fedora 🤓🖥️ ...poor mom 👵")
     if hb == "food":
         return ("Ey yo @" + user.username + " I like food as well ya know but"
@@ -146,7 +148,7 @@ def roast_by_hobby(hb, user):
 
 def word_after(s, keyword):
     # str, str -> str
-    #Returns the word after keyword in a string
+    # Returns the word after keyword in a string
     sindex = s.find(keyword)
     return ((s[(len(keyword) + sindex):]).split())[0]
 
@@ -170,42 +172,42 @@ def roastme(user):
     # user -> str
     # Returns a custom roast of the specified user
 
-    #First try to roast by name (most personal)
+    # First try to roast by name (most personal)
     nameroast = roast_by_name(user.name)
     if len(nameroast) > 1:
         return nameroast
-    #Then try to roas by bio (less personal)
+    # Then try to roas by bio (less personal)
     bio_roast = roast_by_bio(user)
     if len(bio_roast) > 1:
         return bio_roast
-    #Lastly roast their hobby
+    # Lastly roast their hobby
     else:
         path = tweets_to_csv(user)
         hobby = tweets_to_hobby(path)
         return roast_by_hobby(hobby, user)
 
 
-# Main 
+# Main
 
 # File paths
 csvpath = "Tweet_Data/"
 path_to_roast = "toroast.txt"
 
-#Read the names to roast file and save the contents to a list removing the /n
+# Read the names to roast file and save the contents to a list removing the /n
 with open(path_to_roast) as file:
     lines = file.readlines()
     accounts = [line.rstrip() for line in lines]
 # Roast every account in the list
 for account in accounts:
     print(account)
-    #Convert the username given to a user that has username, name, description
+    # Convert the username given to a user that has username, name, description
     user = client2.get_user(username=account, user_fields=[
                             'name', "description"]).data
     print(user.name)
-    #Roast user and save to string
+    # Roast user and save to string
     roast = roastme(user)
-    #Tweet the roast
+    # Tweet the roast
     client.create_tweet(text=roast)
     print("Roast", roast)
-    #Wait for 4 seconds before roasting the next account to not get api banned
+    # Wait for 4 seconds before roasting the next account to not get api banned
     time.sleep(4)
