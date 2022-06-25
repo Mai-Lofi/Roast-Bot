@@ -72,19 +72,22 @@ def roastme(user):
     # user -> str
     # Returns a custom roast of the specified user
 
+    #First create UserRoast object
+    usr_rst = UserRoast(user.name, user.username, user.description)
+
     # First try to roast by name (most personal)
-    nameroast = roast_by_name(user)
+    nameroast = UserRoast.roast_by_name(usr_rst)
     if len(nameroast) > 1:
         return nameroast
     # Then try to roas by bio (less personal)
-    bio_roast = roast_by_bio(user)
+    bio_roast = UserRoast.roast_by_bio(usr_rst)
     if len(bio_roast) > 1:
         return bio_roast
     # Lastly roast their hobby
     else:
         path = tweets_to_csv(user)
         hobby = tweets_to_hobby(path)
-        return roast_by_hobby(hobby, user)
+        return UserRoast.roast_by_hobby(hobby, usr_rst)
 
 
 # Main
@@ -93,24 +96,21 @@ def roastme(user):
 csvpath = "Tweet_Data/"
 path_to_roast = "toroast.txt"
 
-## Read the names to roast file and save the contents to a list removing the /n
-#with open(path_to_roast) as file:
-#    lines = file.readlines()
-#    accounts = [line.rstrip() for line in lines]
-## Roast every account in the list
-#for account in accounts:
-#    print(account)
-#    # Convert the username given to a user that has username, name, description
-#    user = client2.get_user(username=account, user_fields=[
-#                            'name', "description"]).data
-#    print(user.name)
-#    # Roast user and save to string
-#    roast = roastme(user)
-#    # Tweet the roast
-#    client.create_tweet(text=roast)
-#    print("Roast", roast)
-#    # Wait for 4 seconds before roasting the next account to not get api banned
-#    time.sleep(4)
-
-us1 = UserRoast("Rev says desu", "revsaysdesu", "I like anime uwu")
-print(UserRoast.roast_by_hobby("football", us1))
+# Read the names to roast file and save the contents to a list removing the /n
+with open(path_to_roast) as file:
+    lines = file.readlines()
+    accounts = [line.rstrip() for line in lines]
+# Roast every account in the list
+for account in accounts:
+    print(account)
+    # Convert the username given to a user that has username, name, description
+    user = client2.get_user(username=account, user_fields=[
+                            'name', "description"]).data
+    print(user.name)
+    # Roast user and save to string
+    roast = roastme(user)
+    # Tweet the roast
+    client.create_tweet(text=roast)
+    print("Roast", roast)
+    # Wait for 4 seconds before roasting the next account to not get api banned
+    time.sleep(4)
