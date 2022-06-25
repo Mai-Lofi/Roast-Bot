@@ -7,7 +7,7 @@ class UserRoast:
         self.description = description
 
     def roast_by_name(self):
-        # str -> str
+        # UserRoast -> str
         # Creates a roast if the the name contains keywords love or says
         uname = self.name
         kword = "Love "
@@ -30,7 +30,7 @@ class UserRoast:
 
 
     def roast_by_bio(self):
-        # user -> str
+        # UserRoast -> str
         # Returns custom roast if the bio contains certain words
         d = self.description
         if "NFT" in d:
@@ -49,7 +49,7 @@ class UserRoast:
 
 
     def roast_by_hobby(hb, self):
-        # str, user -> str
+        # str, UserRoast -> str
         # returns custom roast based on a users hobby
         if hb == "anime":
             return ("Lmaooooo get your weeb ass out of the bacement lol. The "
