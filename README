@@ -1,1 +1,14 @@
-This is a twitter roast bot made fully in python
+This is a twitter roast bot made fully in python made by me!
+To run the code on your own computer you need to first apply to get a
+twitter developer account and get twitter API 2.0 keys. You also need to make
+a project that links to you twitter account so you can make posts. You can
+see how to apply below. 
+https://developer.twitter.com/en/apply-for-access
+
+Then you need to download or pull this GitHub repository. After downloading,
+you need to input your Twitter consumer key and secret, access token and secret,
+and lastly your bearer token. Then in the toroast.txt input the names of the 
+accounts you would like to roast. Then you just need to run the main.py files 
+and the twitter bot will roast the users specified.
+
+Thanks and enjoy!
